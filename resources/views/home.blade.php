@@ -31,17 +31,19 @@
     </div>
   </div>
   <div class="flex flex-col items-center justify-center mt-4">
-    <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
-      <div class="grid grid-cols-10 gap-2">
-        <div class="col-span-9 overflow-hidden">
-          <h1 class="mb-1 font-bold">Client Review & Feedback</h1>
-          <p class="text-xs text-[#8A8A8A] w-[95%]">Pop up Redesign</p>
+    @foreach ($todolist as $item)
+      <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+        <div class="grid grid-cols-10 gap-2">
+          <div class="col-span-9 overflow-hidden">
+            <h1 class="mb-1 font-bold">{{$item->title}}</h1>
+            <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->subtitle}}</p>
+          </div>
+          <div class="flex items-center h-[90%]">
+            <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
+          </div>
         </div>
-        <div class="flex items-center h-[90%]">
-          <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-        </div>
+        <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
       </div>
-      <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
-    </div>
+    @endforeach
   </div>
 @endsection
