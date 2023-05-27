@@ -35,7 +35,7 @@
     </div>
   </div>
   <div class="flex flex-col items-center justify-center mt-4">
-    <div id="all-content">
+    <div id="all-todo-list" class="content">
       @foreach ($todolist as $item)
         <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
           <div class="grid grid-cols-10 gap-2">
@@ -51,13 +51,13 @@
         </div>
       @endforeach
     </div>
-    <div id="active-content">
+    <div id="active-todo-list" class="content">
       <h1>Todos Active</h1>
     </div>
-    <div id="done-content">
+    <div id="done-todo-list" class="content">
       <h1>Todos Done</h1>
     </div>
-    <div id="delete-content">
+    <div id="delete-todo-list" class="content">
       <h1>Todos Deleted</h1>
     </div>
   </div>
@@ -70,29 +70,22 @@
     }
     
     function updateView() {
-      if (status === 'all') {
-        document.getElementById('all-content').style.display = 'block';
-        document.getElementById('active-content').style.display = 'none';
-        document.getElementById('done-content').style.display = 'none';
-        document.getElementById('delete-content').style.display = 'none';
-      } else if (status === 'active') {
-        document.getElementById('all-content').style.display = 'none';
-        document.getElementById('active-content').style.display = 'block';
-        document.getElementById('done-content').style.display = 'none';
-        document.getElementById('delete-content').style.display = 'none';
-      } else if (status === 'done') {
-        document.getElementById('all-content').style.display = 'none';
-        document.getElementById('active-content').style.display = 'none';
-        document.getElementById('done-content').style.display = 'block';
-        document.getElementById('delete-content').style.display = 'none';
-      } else if (status === 'delete') {
-        document.getElementById('all-content').style.display = 'none';
-        document.getElementById('active-content').style.display = 'none';
-        document.getElementById('done-content').style.display = 'none';
-        document.getElementById('delete-content').style.display = 'block';
+      const category = {
+        all: document.getElementById('all-todo-list'),
+        active: document.getElementById('active-todo-list'),
+        done: document.getElementById('done-todo-list'),
+        delete: document.getElementById('delete-todo-list')
+      };
+
+      for (const todo in category) {
+        if (todo === status) {
+          category[todo].style.display = 'block';
+        } else {
+          category[todo].style.display = 'none';
+        }
       }
     }
-
+    
     updateView();
   </script>
 @endsection
