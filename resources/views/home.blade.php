@@ -18,19 +18,19 @@
     </div>
     <div class="flex items-center text-[#8A8A8A] text-sm justify-between">
       <button onclick="updateStatus('all')" class="flex items-center">
-        <p class="mr-2 text-[#045EFB] font-bold underline underline-offset-8">All</p>
-        <p class="px-[6px] bg-[#045EFB] text-white rounded-xl text-[12px]">1</p>
+        <p class="mr-2 category-style">All</p>
+        <p class="amount-style px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">1</p>
       </button>
       <button onclick="updateStatus('active')" class="flex items-center">
-        <p class="mr-2 text-[#8A8A8A]">Active</p>
-        <p class="px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">1</p>
+        <p class="mr-2 category-style">Active</p>
+        <p class="amount-style px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">1</p>
       </button>
       <button onclick="updateStatus('done')" class="flex items-center">
-        <p class="mr-2 text-[#8A8A8A]">Done</p>
-        <p class="px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">0</p>
+        <p class="mr-2 category-style">Done</p>
+        <p class="amount-style px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">0</p>
       </button>
       <button onclick="updateStatus('delete')">
-        <p class="mr-1 text-[#8A8A8A]">Deleted</p>
+        <p class="mr-1 category-style">Deleted</p>
       </button>
     </div>
   </div>
@@ -76,16 +76,36 @@
         done: document.getElementById('done-todo-list'),
         delete: document.getElementById('delete-todo-list')
       };
+      
+      let categoryText = document.querySelectorAll('.category-style');
+      let categoryTextStyle = ["text-[#045EFB]", "font-bold", "underline", "underline-offset-8"];
+      let amount = document.querySelectorAll('.amount-style');
+      let amountStyle = "bg-[#045EFB]";
+      let index = 0;
 
-      for (const todo in category) {
+      for (const todo of Object.keys(category)) {
         if (todo === status) {
           category[todo].style.display = 'block';
+
+          if (index < categoryText.length) {
+            categoryTextStyle.forEach(function(style) {
+              categoryText[index].classList.add(style);
+            });
+            amount[index].classList.replace("bg-[#D9D9D9]", amountStyle);
+          }
         } else {
           category[todo].style.display = 'none';
+          
+          if (index < categoryText.length) {
+            categoryTextStyle.forEach(function(style) {
+              categoryText[index].classList.remove(style);
+            });
+            amount[index].classList.replace(amountStyle, "bg-[#D9D9D9]");
+          }
         }
+        index++;
       }
     }
-    
     updateView();
   </script>
 @endsection
