@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function index() {
         // Get Data 
-        $all = Todo::get();
+        $all = Todo::orderBy('status', 'desc')->get();
         $active = Todo::where('status', 1)->get();
         $done = Todo::where('status', 0)->get();
 
@@ -39,7 +39,17 @@ class TodoController extends Controller
         return view('home', $data);
     }
 
-    // public function create() {
-    //     return view('home-add');
-    // }
+    public function updateStatus($id)
+    {
+        $test = Todo::find($id);
+        if ($test->status === 1) {
+            $test->status = 0;
+            $test->save();
+        } else {
+            $test->status = 1;
+            $test->save();
+        }
+
+        return redirect('/');
+    }
 }

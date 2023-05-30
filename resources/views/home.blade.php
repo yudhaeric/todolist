@@ -40,14 +40,27 @@
         <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
-              <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->subtitle}}</p>
+              @if ($item->status != 0)
+                <h1 class="mb-1 font-bold">{{$item->title}}</h1>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->subtitle}}</p>
+              @else
+                <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->subtitle}}</p>
+              @endif
             </div>
-            <div class="flex items-center h-[90%]">
-              <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-            </div>
+            <form method="POST" action="/update-status/{{$item->id}}">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="flex items-center h-10">
+                  @if ($item->status != 0)
+                    <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
+                  @else
+                    <img src="images/check.png" width="18px" height="18px" alt="check">
+                  @endif
+                </button>
+            </form>
           </div>
-          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
+          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at}}</p>
         </div>
       @endforeach
     </div>
@@ -59,9 +72,13 @@
               <h1 class="mb-1 font-bold">{{$item->title}}</h1>
               <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->subtitle}}</p>
             </div>
-            <div class="flex items-center h-[90%]">
-              <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-            </div>
+            <form method="POST" action="/update-status/{{$item->id}}">
+              @csrf
+              @method('PUT')
+              <button type="submit" class="flex items-center h-10">
+                <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
+              </button>
+            </form>
           </div>
           <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
         </div>
@@ -72,12 +89,16 @@
         <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
-              <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->subtitle}}</p>
+              <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
+              <p class="text-xs text-[#8A8A8A] w-[95%] line-through">{{$item->subtitle}}</p>
             </div>
-            <div class="flex items-center h-[90%]">
-              <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-            </div>
+            <form method="POST" action="/update-status/{{$item->id}}">
+              @csrf
+              @method('PUT')
+              <button type="submit" class="flex items-center h-10">
+                <img src="images/check.png" width="18px" height="18px" alt="check">
+              </button>
+            </form>
           </div>
           <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
         </div>

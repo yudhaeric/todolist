@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TodoController::class, 'index']);
+Route::put('/update-status/{id}', [TodoController::class, 'updateStatus']);
+
