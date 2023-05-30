@@ -70,7 +70,7 @@
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
               <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->task}}</p>
+              <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
             </div>
             <form method="POST" action="/update-status/{{$item->id}}">
               @csrf
@@ -90,7 +90,7 @@
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
               <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%] line-through">{{$item->task}}</p>
+              <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
             </div>
             <form method="POST" action="/update-status/{{$item->id}}">
               @csrf
