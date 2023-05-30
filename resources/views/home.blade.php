@@ -42,10 +42,10 @@
             <div class="col-span-9 overflow-hidden">
               @if ($item->status != 0)
                 <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->subtitle}}</p>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
               @else
                 <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->subtitle}}</p>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
               @endif
             </div>
             <form method="POST" action="/update-status/{{$item->id}}">
@@ -60,7 +60,7 @@
                 </button>
             </form>
           </div>
-          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at}}</p>
+          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
         </div>
       @endforeach
     </div>
@@ -70,7 +70,7 @@
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
               <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->subtitle}}</p>
+              <p class="text-xs text-[#8A8A8A] w-[95%]">{{$item->task}}</p>
             </div>
             <form method="POST" action="/update-status/{{$item->id}}">
               @csrf
@@ -90,7 +90,7 @@
           <div class="grid grid-cols-10 gap-2">
             <div class="col-span-9 overflow-hidden">
               <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%] line-through">{{$item->subtitle}}</p>
+              <p class="text-xs text-[#8A8A8A] w-[95%] line-through">{{$item->task}}</p>
             </div>
             <form method="POST" action="/update-status/{{$item->id}}">
               @csrf
