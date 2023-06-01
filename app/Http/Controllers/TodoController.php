@@ -56,4 +56,10 @@ class TodoController extends Controller
     public function create() {
         return view('add');
     }
+
+    public function store(Request $request) {
+        $task = Todo::create($request->all());
+
+        return redirect('/');
+    }
 }
