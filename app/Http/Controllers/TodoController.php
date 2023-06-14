@@ -53,7 +53,7 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function create() {
+    public function add() {
         return view('add');
     }
 

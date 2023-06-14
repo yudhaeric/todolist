@@ -11,7 +11,7 @@
         <h1 class="mt-3 font-bold text-center">New Task ToDo</h1>
     </div>
     <div>
-        <form method="post" action="task">
+        <form method="post" action="store">
             @csrf
             <div class="flex flex-col h-full w-96">
                 <label for="title" class="mt-4 mx-8 font-bold text-[#131313]">Task Name</label>
