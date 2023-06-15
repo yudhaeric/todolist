@@ -37,71 +37,77 @@
   <div class="flex flex-col items-center justify-center mt-4">
     <div id="all-todo-list" class="content">
       @foreach ($allTodos as $item)
-        <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
-          <div class="grid grid-cols-10 gap-2">
-            <div class="col-span-9 overflow-hidden">
-              @if ($item->status != 0)
-                <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
-              @else
-                <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
-              @endif
+        <a href="/edit-task/{{$item->id}}">
+          <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+            <div class="grid grid-cols-10 gap-2">
+              <div class="col-span-9 overflow-hidden">
+                @if ($item->status != 0)
+                  <h1 class="mb-1 font-bold">{{$item->title}}</h1>
+                  <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
+                @else
+                  <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
+                  <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
+                @endif
+              </div>
+              <form method="POST" action="/update-status/{{$item->id}}">
+                  @csrf
+                  @method('PUT')
+                  <button type="submit" class="flex items-center h-10">
+                    @if ($item->status != 0)
+                      <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
+                    @else
+                      <img src="images/check.png" width="18px" height="18px" alt="check">
+                    @endif
+                  </button>
+              </form>
             </div>
-            <form method="POST" action="/update-status/{{$item->id}}">
-                @csrf
-                @method('PUT')
-                <button type="submit" class="flex items-center h-10">
-                  @if ($item->status != 0)
-                    <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-                  @else
-                    <img src="images/check.png" width="18px" height="18px" alt="check">
-                  @endif
-                </button>
-            </form>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
           </div>
-          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
-        </div>
+        </a>
       @endforeach
     </div>
     <div id="active-todo-list" class="content">
       @foreach ($activeTodos as $item)
-        <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
-          <div class="grid grid-cols-10 gap-2">
-            <div class="col-span-9 overflow-hidden">
-              <h1 class="mb-1 font-bold">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
+        <a href="/edit-task/{{$item->id}}">
+          <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+            <div class="grid grid-cols-10 gap-2">
+              <div class="col-span-9 overflow-hidden">
+                <h1 class="mb-1 font-bold">{{$item->title}}</h1>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
+              </div>
+              <form method="POST" action="/update-status/{{$item->id}}">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="flex items-center h-10">
+                  <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
+                </button>
+              </form>
             </div>
-            <form method="POST" action="/update-status/{{$item->id}}">
-              @csrf
-              @method('PUT')
-              <button type="submit" class="flex items-center h-10">
-                <div class="border border-[#8A8A8A] w-[18px] h-[18px] rounded-full"></div>
-              </button>
-            </form>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
           </div>
-          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
-        </div>
+        </a>
       @endforeach
     </div>
     <div id="done-todo-list" class="content">
       @foreach ($doneTodos as $item)
-        <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
-          <div class="grid grid-cols-10 gap-2">
-            <div class="col-span-9 overflow-hidden">
-              <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-              <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
+        <a href="/edit-task/{{$item->id}}">
+          <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+            <div class="grid grid-cols-10 gap-2">
+              <div class="col-span-9 overflow-hidden">
+                <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
+              </div>
+              <form method="POST" action="/update-status/{{$item->id}}">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="flex items-center h-10">
+                  <img src="images/check.png" width="18px" height="18px" alt="check">
+                </button>
+              </form>
             </div>
-            <form method="POST" action="/update-status/{{$item->id}}">
-              @csrf
-              @method('PUT')
-              <button type="submit" class="flex items-center h-10">
-                <img src="images/check.png" width="18px" height="18px" alt="check">
-              </button>
-            </form>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
           </div>
-          <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
-        </div>
+        </a>
       @endforeach
     </div>
     <div id="delete-todo-list" class="content">
