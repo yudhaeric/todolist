@@ -12,11 +12,13 @@ class TodoController extends Controller
         $all = Todo::orderBy('status', 'DESC')->orderBy('created_at', 'DESC')->get();
         $active = Todo::where('status', 1)->orderBy('created_at', 'DESC')->get();
         $done = Todo::where('status', 0)->orderBy('created_at', 'DESC')->get();
+        $deleted = Todo::onlyTrashed()->orderBy('deleted_at', 'DESC')->get();
 
         // Get Amount of Data
         $allAmount = Todo::count();
         $activeAmount = Todo::where('status', 1)->count();
         $doneAmount = Todo::where('status', 0)->count();
+        $deletedAmount = Todo::onlyTrashed()->count();
 
         // Get Local Time
         date_default_timezone_set('Asia/Jakarta');
@@ -28,9 +30,11 @@ class TodoController extends Controller
             'allTodos' => $all,
             'activeTodos' => $active,
             'doneTodos' => $done,
+            'deletedTodos' => $deleted,
             'allAmount' => $allAmount,
             'activeAmount' => $activeAmount,
             'doneAmount' => $doneAmount,
+            'deletedAmount' => $deletedAmount,
             'day' => $day,
             'date' => $date,
             'month' => $month
@@ -74,6 +78,13 @@ class TodoController extends Controller
         $todo = Todo::findOrFail($id);
 
         $todo->update($request->all());
+        return redirect('/');
+    }
+
+    public function delete($id) {
+        $todo = Todo::findOrFail($id);
+        $todo->delete();
+
         return redirect('/');
     }
 }

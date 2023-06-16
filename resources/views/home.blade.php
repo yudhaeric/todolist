@@ -29,8 +29,9 @@
         <p class="mr-2 category-style">Done</p>
         <p class="amount-style px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">{{$doneAmount}}</p>
       </button>
-      <button onclick="updateStatus('delete')">
-        <p class="mr-1 category-style">Deleted</p>
+      <button onclick="updateStatus('delete')" class="flex items-center">
+        <p class="mr-2 category-style">Deleted</p>
+        <p class="amount-style px-[6px] bg-[#D9D9D9] text-white rounded-xl text-[12px]">{{$deletedAmount}}</p>
       </button>
     </div>
   </div>
@@ -83,7 +84,7 @@
                 </button>
               </form>
             </div>
-            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
           </div>
         </a>
       @endforeach
@@ -105,13 +106,25 @@
                 </button>
               </form>
             </div>
-            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">April 27</p>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
           </div>
         </a>
       @endforeach
     </div>
     <div id="delete-todo-list" class="content">
-      <h1>Todos Deleted</h1>
+      @foreach ($deletedTodos as $item)
+        <a href="/edit-task/{{$item->id}}">
+          <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+            <div class="grid grid-cols-10 gap-2">
+              <div class="col-span-9 overflow-hidden">
+                <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
+                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
+              </div>
+            </div>
+            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
+          </div>
+        </a>
+      @endforeach
     </div>
   </div>
   <script>

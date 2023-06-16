@@ -12,7 +12,13 @@
             <img src="/images/back.png" class="w-6 h-6 mr-2">
         </a>
         <h1 class="mr-2 font-bold text-center ">Edit</h1>
-        <img src="/images/delete.png" class="w-5 h-5">
+        <form action="/delete-task/{{$todo->id}}" method="post">
+            @csrf
+            @method('delete')
+            <button type="submit">
+                <img src="/images/delete.png" class="w-5 h-5">
+            </button>
+        </form>
     </div>
     <div class="w-80">
         <form action="/task/{{$todo->id}}" method="post">

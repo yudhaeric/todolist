@@ -22,3 +22,5 @@ Route::post('/store', [TodoController::class, 'store']);
 
 Route::get('/edit-task/{id}', [TodoController::class, 'edit']);
 Route::put('/task/{id}', [TodoController::class, 'update']);
+
+Route::delete('/delete-task/{id}', [TodoController::class, 'delete']);
