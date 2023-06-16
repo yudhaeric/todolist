@@ -20,3 +20,5 @@ Route::put('/update-status/{id}', [TodoController::class, 'updateStatus']);
 Route::get('/add', [TodoController::class, 'add']);
 Route::post('/store', [TodoController::class, 'store']);
 
+Route::get('/edit-task/{id}', [TodoController::class, 'edit']);
+Route::put('/task/{id}', [TodoController::class, 'update']);

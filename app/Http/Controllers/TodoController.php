@@ -62,4 +62,18 @@ class TodoController extends Controller
 
         return redirect('/');
     }
+
+    public function edit($id) {
+        $todo = Todo::findOrFail($id);
+
+        // mengoper value task ke page view
+        return view('edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id) {
+        $todo = Todo::findOrFail($id);
+
+        $todo->update($request->all());
+        return redirect('/');
+    }
 }
