@@ -9,9 +9,9 @@ class TodoController extends Controller
 {
     public function index() {
         // Get Data 
-        $all = Todo::orderBy('status', 'desc')->get();
-        $active = Todo::where('status', 1)->get();
-        $done = Todo::where('status', 0)->get();
+        $all = Todo::orderBy('status', 'DESC')->orderBy('created_at', 'DESC')->get();
+        $active = Todo::where('status', 1)->orderBy('created_at', 'DESC')->get();
+        $done = Todo::where('status', 0)->orderBy('created_at', 'DESC')->get();
 
         // Get Amount of Data
         $allAmount = Todo::count();
