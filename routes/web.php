@@ -25,3 +25,4 @@ Route::put('/task/{id}', [TodoController::class, 'update']);
 
 Route::delete('/delete-task/{id}', [TodoController::class, 'delete']);
 Route::get('/task/{id}/restore', [TodoController::class, 'restore']);
+Route::get('/task/{id}/destroy', [TodoController::class, 'destroy']);

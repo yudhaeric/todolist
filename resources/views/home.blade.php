@@ -126,9 +126,9 @@
             <div class="w-full overflow-hidden">
               <div class="flex items-center justify-between">
                 <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-                <button type="submit">
+                <a href="/task/{{$item->id}}/destroy">
                   <img src="/images/delete.png" class="w-4 h-4">
-                </button>
+                </a>
               </div>
               <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
             </div>

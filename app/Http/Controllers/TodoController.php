@@ -114,4 +114,15 @@ class TodoController extends Controller
         
         return redirect('/');
     }
+    
+    public function destroy($id) {
+        $todo = Todo::withTrashed()->where('id', $id)->forceDelete();
+
+        if($todo) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Permanently delete todo success.');
+        }
+        
+        return redirect('/');
+    }
 }
