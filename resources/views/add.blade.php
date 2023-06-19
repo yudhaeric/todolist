@@ -15,7 +15,7 @@
             @csrf
             <div class="flex flex-col h-full w-96">
                 <label for="title" class="mt-4 mx-8 font-bold text-[#131313]">Task Name</label>
-                <input required type="text" name="title" id="title" placeholder="Add Task Name..." class="text-[12px] outline-[#131313] mt-2 mx-8 bg-[#EFF3F4] rounded-md py-2 pl-4">
+                <input required type="text" name="title" id="title" placeholder="Add Task Name..." class="text-[12px] outline-[#131313] mt-2 mx-8 bg-[#EFF3F4] rounded-md py-2 pl-2">
             </div>
             <div class="flex flex-col overflow-hidden w-96">
                 <label for="task" class="mt-4 mx-8 font-bold text-[#131313]">Description</label>
