@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Todo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TodoController extends Controller
 {
@@ -64,6 +65,11 @@ class TodoController extends Controller
     public function store(Request $request) {
         $task = Todo::create($request->all());
 
+        if($task) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'New todo added.');
+        }
+
         return redirect('/');
     }
 
@@ -77,20 +83,35 @@ class TodoController extends Controller
     public function update(Request $request, $id) {
         $todo = Todo::findOrFail($id);
 
+        if($todo) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Edit todo success.');
+        }
+
         $todo->update($request->all());
         return redirect('/');
     }
 
     public function delete($id) {
         $todo = Todo::findOrFail($id);
-        $todo->delete();
 
+        if($todo) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Delete todo success.');
+        }
+
+        $todo->delete();
         return redirect('/');
     }
 
     public function restore($id) {
         $todo = Todo::withTrashed()->where('id', $id)->restore();
 
+        if($todo) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Restore todo success.');
+        }
+        
         return redirect('/');
     }
 }

@@ -37,6 +37,14 @@
   </div>
   <div class="flex flex-col items-center justify-center mt-4">
     <div id="all-todo-list" class="content">
+      @if (Session::has('status'))
+        <div class="pl-2 py-2 mb-5 bg-[#E9F6ED] border-2 border-[#90d3a2] text-[#3A4347] text-[14px] rounded-xl w-80 h-14 flex gap-3 items-center" role="alert">
+            <div class="p-2 rounded-xl bg-[#49b767] w-[35px] h-[35px]">
+              <img src="/images/checked.png" alt="Success">
+            </div>
+            {{Session::get('message')}}
+        </div>
+      @endif
       @foreach ($allTodos as $item)
         <a href="/edit-task/{{$item->id}}">
           <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
