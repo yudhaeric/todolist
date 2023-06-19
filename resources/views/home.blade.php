@@ -113,17 +113,23 @@
     </div>
     <div id="delete-todo-list" class="content">
       @foreach ($deletedTodos as $item)
-        <a href="/edit-task/{{$item->id}}">
-          <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
-            <div class="grid grid-cols-10 gap-2">
-              <div class="col-span-9 overflow-hidden">
+        <div class="w-80 h-28 bg-[#FFFFFF] rounded-2xl mb-5 px-5 py-3">
+          <div class="grid gap-2 pb-3">
+            <div class="w-full overflow-hidden">
+              <div class="flex items-center justify-between">
                 <h1 class="mb-1 font-bold line-through">{{$item->title}}</h1>
-                <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px]">{{$item->task}}</p>
+                <button type="submit">
+                  <img src="/images/delete.png" class="w-4 h-4">
+                </button>
               </div>
+              <p class="text-xs text-[#8A8A8A] w-[95%] h-[18px] line-through">{{$item->task}}</p>
             </div>
-            <p class="text-[10px] text-[#8A8A8A] mt-3 border-t-2 pt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
           </div>
-        </a>
+          <div class="flex items-center justify-between border-t-2">
+            <p class="text-[10px] text-[#8A8A8A] mt-3 font-bold">{{$item->created_at->format('Y-m-d')}}</p>
+            <a href="/task/{{$item->id}}/restore" class="text-[10px] text-[#045EFB] mt-3 font-bold">RESTORE</a>
+          </div>
+        </div>
       @endforeach
     </div>
   </div>

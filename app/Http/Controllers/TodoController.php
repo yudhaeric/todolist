@@ -87,4 +87,10 @@ class TodoController extends Controller
 
         return redirect('/');
     }
+
+    public function restore($id) {
+        $todo = Todo::withTrashed()->where('id', $id)->restore();
+
+        return redirect('/');
+    }
 }
