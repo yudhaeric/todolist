@@ -1,12 +1,10 @@
-## Todo List App
+# Todo List App
 
-My Learning Project with Laravel
+Learning project with Laravel. Live URL https://todorics.fly.dev/
 
-Live URL: -
+## Built With
 
-Built With
-
-HTML
-Tailwind CSS
-Laravel 10
-PHP 8.1
+- HTML
+- Tailwind CSS
+- Laravel 10
+- PHP 8.1
